@@ -6,47 +6,34 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} = React;
+    AppRegistry,
+    Navigator,
+
+    } = React;
+
+var Login=require('./Login');
 
 var QTQMobile = React.createClass({
   render: function() {
+
+    var defaultName = 'Login';
+    var defaultComponent = Login;
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+        <Navigator
+            initialRoute={{ name: defaultName, component: defaultComponent }}
+            configureScene={() => {
+            //动画
+            return Navigator.SceneConfigs.VerticalDownSwipeJump;
+          }}
+            renderScene={(route, navigator) => {
+            let Component = route.component;
+            if(route.component) {
+              return <Component {...route.params} navigator={navigator} />
+            }
+          }} />
+
     );
   }
 });
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-AppRegistry.registerComponent('QTQMobile', () => QTQMobile);
+AppRegistry.registerComponent('QTQMobile', () =>QTQMobile);
