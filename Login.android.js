@@ -22,7 +22,7 @@ var {
  var SystemUrl_Key="SystemUrl_Key";
 
 var SystemUrlSet=require('./SystemUrlSet');
-
+var MainPage=require('./MainPage');
 
 var Login = React.createClass({
 
@@ -55,8 +55,46 @@ var Login = React.createClass({
         }          
     },
 
+    _loginPress:function()
+    {
+       const {navigator}=this.props;
 
-  render: function() {
+        if(navigator)
+        {
+            navigator.push({
+                name:MainPage,
+                component:MainPage,
+            });
+        }
+
+    },
+
+
+    onSettingClick:function(){
+
+        var _this=this;
+        const {navigator} =this.props;
+
+        if(navigator)
+        {
+            navigator.push({
+                name:SystemUrlSet,
+                component:SystemUrlSet,
+                params:{
+
+                    getSystemUrl: function(systemurl) {
+                        _this.setState({
+                            systemurl: systemurl
+                        })
+                    },
+                }
+            });
+        }
+
+    },
+
+
+    render: function() {
 
 
     return (
@@ -97,7 +135,9 @@ var Login = React.createClass({
           }
           else
           {
-            ToastAndroid.show('获得系统地址：'+this.state.systemurl,ToastAndroid.LONG)}
+          this._loginPress();
+            //ToastAndroid.show('获得系统地址：'+this.state.systemurl,ToastAndroid.LONG)
+          }
           }
       }>
 
@@ -112,29 +152,6 @@ var Login = React.createClass({
     );
   },
 
-
-onSettingClick:function(){
-
-var _this=this;
-const {navigator} =this.props;
-
-if(navigator)
-{
-  navigator.push({
-    name:SystemUrlSet,
-    component:SystemUrlSet,
-    params:{     
-    
-       getSystemUrl: function(systemurl) {
-                        _this.setState({
-                            systemurl: systemurl
-                        })
-                    },
-    }
-  }); 
-}
-
-},
 
 
   onActionSelected: function(position) {

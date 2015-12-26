@@ -38,13 +38,12 @@ class MainPage extends React.Component {
                 <Text style={styles.instructions}>
                     Selected page: {this.state.page}
                 </Text>
-                <Tabs selected="second" style={{backgroundColor:'white'}}
+                <Tabs selected="first" style={{backgroundColor:'white'}}
                       onSelect={function(el){self.setState({page: el.props.name});return {style:{color:'red'}}}}>
-                    <Text name="first">First</Text>
-                    <Text name="second">Second</Text>
-                    <Text name="third">Third</Text>
-                    <Text name="fourth">Fourth</Text>
-                    <Text name="fifth">Fifth</Text>
+                    <Text name="first">消息</Text>
+                    <Text name="second">功能</Text>
+                    <Text name="third">报表</Text>
+                    <Text name="fourth">我</Text>
                 </Tabs>
             </View>
         );
