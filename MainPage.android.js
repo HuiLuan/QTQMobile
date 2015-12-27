@@ -37,13 +37,40 @@ class MainPage extends React.Component {
                 </Text>
                 <Text style={styles.instructions}>
                     Selected page: {this.state.page}
+                    Selected selected: {this.state.selected}
                 </Text>
-                <Tabs selected="first" style={{backgroundColor:'white'}}
-                      onSelect={function(el){self.setState({page: el.props.name});return {style:{color:'red'}}}}>
-                    <Text name="first">消息</Text>
-                    <Text name="second">功能</Text>
-                    <Text name="third">报表</Text>
-                    <Text name="fourth">我</Text>
+                <Tabs selected="first" style={styles.tabs}
+                      onSelect=
+                          {
+                          function(el)
+                            {
+                              self.setState({page: el.props.name});
+                              return {selected: true}
+                            }
+                      }>
+
+                    <View name="first"  style={styles.itemview} >
+                        <Text>消息</Text>
+                        <Image  source={require('./Image/icon1.png')}></Image>
+                    </View>
+
+
+                    <View name="second" style={styles.itemview} >
+                        <Text>功能</Text>
+                        <Image  source={require('./Image/icon2.png')}></Image>
+                    </View>
+
+
+                    <View name="third" style={styles.itemview} >
+                        <Text>报表</Text>
+                        <Image  source={require('./Image/icon3.png')}></Image>
+                    </View>
+
+                    <View name="fourth" style={styles.itemview} >
+                        <Text>我</Text>
+                        <Image  source={require('./Image/icon4.png')}></Image>
+                    </View>
+
                 </Tabs>
             </View>
         );
@@ -65,7 +92,17 @@ var styles = StyleSheet.create({
     instructions: {
         textAlign: 'center',
         color: '#333333',
-        marginBottom: 5,
+        marginBottom: 50,
+    },
+    tabs:{
+        backgroundColor:'white',
+        height:100
+    },
+    itemview:{
+        flexDirection:'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height:180,
     },
 });
 
